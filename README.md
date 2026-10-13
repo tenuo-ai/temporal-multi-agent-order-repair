@@ -266,3 +266,6 @@ I would also take care to make real repair tools be [idempotent](https://tempora
 
 
 
+
+### Optional: Tenuo warrants on the repair tools
+The planner reads order data, including notes customers write, and a confidence score says how sure it is, not what it is allowed to do. [TENUO.md](./TENUO.md) adds an optional mode where each order gets a [Tenuo](https://github.com/tenuo-ai/tenuo) warrant and every repair tool runs as its own Activity on a separate worker that checks the call against that warrant before the tool runs. [`poison_order_notes.py`](./poison_order_notes.py) plants two customer notes to show the difference: with the warrants on, an approval request rerouted to Hagrid is refused, and an order for 5,000 badge sets is held for signed approval. Without Tenuo's key files, nothing changes.
